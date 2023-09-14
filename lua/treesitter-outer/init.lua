@@ -59,7 +59,7 @@ function m.outer(is_start)
 
     local max = { 0, 0 }
     local sel = normalize_selection(vim.fn.getpos("."), vim.fn.getpos("."))
-    local nodes = queries.get_capture_matches_recursively(bufnr, '@range', "textsubjects-smart")
+    local nodes = queries.get_capture_matches_recursively(bufnr, '@range', "treesitter-outer")
     for _, v in pairs(nodes) do
         local match_start_row, match_start_col = unpack(v.node.start_pos)
         local match_end_row, match_end_col = unpack(v.node.end_pos)
@@ -84,7 +84,7 @@ local get_default_config = function()
     return {
         filetypes = { "c", "cpp", "elixir", "fennel", "foam", "go", "javascript", "julia", "lua", "nix", "php", "python",
             "r", "ruby", "rust", "scss", "tsx", "typescript" },
-        -- set [[ and ]] to jump outer range
+        -- set [{ and ]} to jump outer range
         defaultKey = true
     }
 end
