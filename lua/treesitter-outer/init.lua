@@ -82,10 +82,29 @@ end
 
 local get_default_config = function()
     return {
-        filetypes = { "c", "cpp", "elixir", "fennel", "foam", "go", "javascript", "julia", "lua", "nix", "php", "python",
-            "r", "ruby", "rust", "scss", "tsx", "typescript" },
-        -- set [{ and ]} to jump outer range
-        defaultKey = true
+        filetypes = {
+            "c",
+            "cpp",
+            "elixir",
+            "fennel",
+            "foam",
+            "go",
+            "javascript",
+            "julia",
+            "lua",
+            "nix",
+            "php",
+            "python",
+            "r",
+            "ruby",
+            "rust",
+            "scss",
+            "tsx",
+            "typescript",
+        },
+        mode = { 'n', 'v' },
+        prev_outer_key = "[{",
+        next_outer_key = "]}",
     }
 end
 
@@ -93,22 +112,20 @@ m.setup = function(opt)
     opt = opt or {}
     m.config = vim.tbl_deep_extend('force', get_default_config(), opt)
 
-    if m.config.defaultKey then
-        local group = vim.api.nvim_create_augroup("TreesitterOuter", { clear = true })
-        vim.api.nvim_create_autocmd(
-            { "Filetype" },
-            {
-                pattern = m.config.filetypes,
-                callback = function()
-                    vim.keymap.set({ 'n', 'v' }, '[{', function() m.outer(true) end,
-                        { noremap = true, silent = true, buffer = true, desc = "Extend to outer node start" })
-                    vim.keymap.set({ 'n', 'v' }, ']}', function() m.outer(false) end,
-                        { noremap = true, silent = true, buffer = true, desc = "Extend to outer node end" })
-                end,
-                group = group,
-            }
-        )
-    end
+    local group = vim.api.nvim_create_augroup("TreesitterOuter", { clear = true })
+    vim.api.nvim_create_autocmd(
+        { "Filetype" },
+        {
+            pattern = m.config.filetypes,
+            callback = function()
+                vim.keymap.set(m.config.mode, m.config.prev_outer_key, function() m.outer(true) end,
+                    { noremap = true, silent = true, buffer = true, desc = "Jump to start position of outer node" })
+                vim.keymap.set(m.config.mode, m.config.next_outer_key, function() m.outer(false) end,
+                    { noremap = true, silent = true, buffer = true, desc = "Jump to end position of outer node" })
+            end,
+            group = group,
+        }
+    )
 end
 
 return m
