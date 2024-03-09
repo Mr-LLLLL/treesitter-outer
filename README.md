@@ -9,7 +9,7 @@ jump to outer node with smart way based on [nvim-treesitter](https://github.com/
     require("treesitter-outer").setup {
         filetypes = { "c", "cpp", "elixir", "fennel", "foam", "go", "javascript", "julia", "lua", "nix", "php", "python",
             "r", "ruby", "rust", "scss", "tsx", "typescript" },
-        -- set [{ and ]} to jump outer range
+        -- set `[{` and `]}` to jump outer node
         defaultKey = true",
     }
 ```
