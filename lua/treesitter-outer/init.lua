@@ -80,32 +80,34 @@ function m.outer(is_start)
     end
 end
 
+m.config = {
+    filetypes = {
+        "c",
+        "cpp",
+        "elixir",
+        "fennel",
+        "foam",
+        "go",
+        "javascript",
+        "julia",
+        "lua",
+        "nix",
+        "php",
+        "python",
+        "r",
+        "ruby",
+        "rust",
+        "scss",
+        "tsx",
+        "typescript",
+    },
+    mode = { 'n', 'v' },
+    prev_outer_key = "[{",
+    next_outer_key = "]}",
+}
+
 local get_default_config = function()
-    return {
-        filetypes = {
-            "c",
-            "cpp",
-            "elixir",
-            "fennel",
-            "foam",
-            "go",
-            "javascript",
-            "julia",
-            "lua",
-            "nix",
-            "php",
-            "python",
-            "r",
-            "ruby",
-            "rust",
-            "scss",
-            "tsx",
-            "typescript",
-        },
-        mode = { 'n', 'v' },
-        prev_outer_key = "[{",
-        next_outer_key = "]}",
-    }
+    return m.config
 end
 
 m.setup = function(opt)
