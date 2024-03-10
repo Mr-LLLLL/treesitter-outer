@@ -6,7 +6,7 @@ jump to outer node smartly base on [nvim-treesitter](https://github.com/nvim-tre
 
 ## Installation
 
-With [packer.nvim](https://github.com/folk/lazy.nvim):
+With [lazy.nvim](https://github.com/folk/lazy.nvim):
 
 ``` lua
     {
