@@ -4,6 +4,8 @@
 
 jump to outer node smartly base on [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) And thank [nvim-treesitter-textsubject](https://github.com/RRethy/nvim-treesitter-textsubjects) to provide Tree-Sitter queries
 
+![Screencasts](https://github.com/Mr-LLLLL/media/tree/master/treesitter-outer/outer.gif)
+
 ## Installation
 
 With [lazy.nvim](https://github.com/folk/lazy.nvim):
